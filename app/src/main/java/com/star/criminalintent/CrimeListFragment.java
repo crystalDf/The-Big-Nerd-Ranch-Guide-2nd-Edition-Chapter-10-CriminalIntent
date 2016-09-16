@@ -29,7 +29,7 @@ public class CrimeListFragment extends Fragment {
 
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mCrimeRecyclerView.setLayoutManager(linearLayoutManager);
 
         return view;
@@ -44,7 +44,7 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void updateUI() {
-        CrimeLab crimeLab = CrimeLab.getInstance(getContext());
+        CrimeLab crimeLab = CrimeLab.getInstance(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
         if (mCrimeAdapter == null) {
@@ -71,7 +71,7 @@ public class CrimeListFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     mCrimePosition = getAdapterPosition();
-                    Intent intent = CrimeActivity.newIntent(getContext(), mCrime.getId());
+                    Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
                     startActivity(intent);
                 }
             });
@@ -102,7 +102,7 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             View view = layoutInflater.inflate(R.layout.list_item_crime, parent, false);
 
